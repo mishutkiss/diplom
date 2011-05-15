@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListCurriculumTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+        <h:form styleClass="jsfcrud_list_form">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:outputText escape="false" value="#{bundle.ListCurriculumEmpty}" rendered="#{curriculumController.items.rowCount == 0}"/>
+            <h:panelGroup rendered="#{curriculumController.items.rowCount > 0}">
+                <h:outputText value="#{curriculumController.pagination.pageFirstItem + 1}..#{curriculumController.pagination.pageLastItem + 1}/#{curriculumController.pagination.itemsCount}"/>&nbsp;
+                <h:commandLink action="#{curriculumController.previous}" value="#{bundle.Previous} #{curriculumController.pagination.pageSize}" rendered="#{curriculumController.pagination.hasPreviousPage}"/>&nbsp;
+                <h:commandLink action="#{curriculumController.next}" value="#{bundle.Next} #{curriculumController.pagination.pageSize}" rendered="#{curriculumController.pagination.hasNextPage}"/>&nbsp;
+                <h:dataTable value="#{curriculumController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListCurriculumTitle_id}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.id}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListCurriculumTitle_startYear}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.startYear}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListCurriculumTitle_tuitionDurationYears}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.tuitionDurationYears}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListCurriculumTitle_tuitionDurationMonths}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.tuitionDurationMonths}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListCurriculumTitle_deleted}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.deleted}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListCurriculumTitle_specialityId}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.specialityId}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListCurriculumTitle_educationFormId}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.educationFormId}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="&nbsp;"/>
+                        </f:facet>
+                        <h:commandLink action="#{curriculumController.prepareView}" value="#{bundle.ListCurriculumViewLink}"/>
+                        <h:outputText value=" "/>
+                        <h:commandLink action="#{curriculumController.prepareEdit}" value="#{bundle.ListCurriculumEditLink}"/>
+                        <h:outputText value=" "/>
+                        <h:commandLink action="#{curriculumController.destroy}" value="#{bundle.ListCurriculumDestroyLink}"/>
+                    </h:column>
+                </h:dataTable>
+            </h:panelGroup>
+            <br />
+            <h:commandLink action="#{curriculumController.prepareCreate}" value="#{bundle.ListCurriculumCreateLink}"/>
+            <br />
+            <br />
+            <h:commandLink value="#{bundle.ListCurriculumIndexLink}" action="/index" immediate="true" />
+        </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

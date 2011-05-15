@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateCurriculumGraphicTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateCurriculumGraphicLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{curriculumGraphicController.selected.id}" title="#{bundle.CreateCurriculumGraphicTitle_id}" required="true" requiredMessage="#{bundle.CreateCurriculumGraphicRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateCurriculumGraphicLabel_semester}" for="semester" />
+                    <h:inputText id="semester" value="#{curriculumGraphicController.selected.semester}" title="#{bundle.CreateCurriculumGraphicTitle_semester}" required="true" requiredMessage="#{bundle.CreateCurriculumGraphicRequiredMessage_semester}"/>
+                    <h:outputLabel value="#{bundle.CreateCurriculumGraphicLabel_weeks}" for="weeks" />
+                    <h:inputText id="weeks" value="#{curriculumGraphicController.selected.weeks}" title="#{bundle.CreateCurriculumGraphicTitle_weeks}" required="true" requiredMessage="#{bundle.CreateCurriculumGraphicRequiredMessage_weeks}"/>
+                    <h:outputLabel value="#{bundle.CreateCurriculumGraphicLabel_ordinalNumber}" for="ordinalNumber" />
+                    <h:inputText id="ordinalNumber" value="#{curriculumGraphicController.selected.ordinalNumber}" title="#{bundle.CreateCurriculumGraphicTitle_ordinalNumber}" required="true" requiredMessage="#{bundle.CreateCurriculumGraphicRequiredMessage_ordinalNumber}"/>
+                    <h:outputLabel value="#{bundle.CreateCurriculumGraphicLabel_curriculumPhaseId}" for="curriculumPhaseId" />
+                    <h:selectOneMenu id="curriculumPhaseId" value="#{curriculumGraphicController.selected.curriculumPhaseId}" title="#{bundle.CreateCurriculumGraphicTitle_curriculumPhaseId}" required="true" requiredMessage="#{bundle.CreateCurriculumGraphicRequiredMessage_curriculumPhaseId}">
+                        <f:selectItems value="#{curriculumPhaseController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{curriculumGraphicController.create}" value="#{bundle.CreateCurriculumGraphicSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{curriculumGraphicController.prepareList}" value="#{bundle.CreateCurriculumGraphicShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.CreateCurriculumGraphicIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListCurriculumCourseTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+        <h:form styleClass="jsfcrud_list_form">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:outputText escape="false" value="#{bundle.ListCurriculumCourseEmpty}" rendered="#{curriculumCourseController.items.rowCount == 0}"/>
+            <h:panelGroup rendered="#{curriculumCourseController.items.rowCount > 0}">
+                <h:outputText value="#{curriculumCourseController.pagination.pageFirstItem + 1}..#{curriculumCourseController.pagination.pageLastItem + 1}/#{curriculumCourseController.pagination.itemsCount}"/>&nbsp;
+                <h:commandLink action="#{curriculumCourseController.previous}" value="#{bundle.Previous} #{curriculumCourseController.pagination.pageSize}" rendered="#{curriculumCourseController.pagination.hasPreviousPage}"/>&nbsp;
+                <h:commandLink action="#{curriculumCourseController.next}" value="#{bundle.Next} #{curriculumCourseController.pagination.pageSize}" rendered="#{curriculumCourseController.pagination.hasNextPage}"/>&nbsp;
+                <h:dataTable value="#{curriculumCourseController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListCurriculumCourseTitle_id}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.id}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListCurriculumCourseTitle_ectsCredits}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.ectsCredits}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListCurriculumCourseTitle_totalHours}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.totalHours}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListCurriculumCourseTitle_inclassHours}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.inclassHours}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListCurriculumCourseTitle_lectureHours}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.lectureHours}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListCurriculumCourseTitle_laboratoryClassHours}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.laboratoryClassHours}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListCurriculumCourseTitle_practicalClassHours}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.practicalClassHours}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListCurriculumCourseTitle_selfStudyHours}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.selfStudyHours}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListCurriculumCourseTitle_course}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.course}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="&nbsp;"/>
+                        </f:facet>
+                        <h:commandLink action="#{curriculumCourseController.prepareView}" value="#{bundle.ListCurriculumCourseViewLink}"/>
+                        <h:outputText value=" "/>
+                        <h:commandLink action="#{curriculumCourseController.prepareEdit}" value="#{bundle.ListCurriculumCourseEditLink}"/>
+                        <h:outputText value=" "/>
+                        <h:commandLink action="#{curriculumCourseController.destroy}" value="#{bundle.ListCurriculumCourseDestroyLink}"/>
+                    </h:column>
+                </h:dataTable>
+            </h:panelGroup>
+            <br />
+            <h:commandLink action="#{curriculumCourseController.prepareCreate}" value="#{bundle.ListCurriculumCourseCreateLink}"/>
+            <br />
+            <br />
+            <h:commandLink value="#{bundle.ListCurriculumCourseIndexLink}" action="/index" immediate="true" />
+        </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

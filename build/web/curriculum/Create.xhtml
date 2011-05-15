@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateCurriculumTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateCurriculumLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{curriculumController.selected.id}" title="#{bundle.CreateCurriculumTitle_id}" required="true" requiredMessage="#{bundle.CreateCurriculumRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateCurriculumLabel_startYear}" for="startYear" />
+                    <h:inputText id="startYear" value="#{curriculumController.selected.startYear}" title="#{bundle.CreateCurriculumTitle_startYear}" required="true" requiredMessage="#{bundle.CreateCurriculumRequiredMessage_startYear}"/>
+                    <h:outputLabel value="#{bundle.CreateCurriculumLabel_tuitionDurationYears}" for="tuitionDurationYears" />
+                    <h:inputText id="tuitionDurationYears" value="#{curriculumController.selected.tuitionDurationYears}" title="#{bundle.CreateCurriculumTitle_tuitionDurationYears}" required="true" requiredMessage="#{bundle.CreateCurriculumRequiredMessage_tuitionDurationYears}"/>
+                    <h:outputLabel value="#{bundle.CreateCurriculumLabel_tuitionDurationMonths}" for="tuitionDurationMonths" />
+                    <h:inputText id="tuitionDurationMonths" value="#{curriculumController.selected.tuitionDurationMonths}" title="#{bundle.CreateCurriculumTitle_tuitionDurationMonths}" required="true" requiredMessage="#{bundle.CreateCurriculumRequiredMessage_tuitionDurationMonths}"/>
+                    <h:outputLabel value="#{bundle.CreateCurriculumLabel_deleted}" for="deleted" />
+                    <h:inputText id="deleted" value="#{curriculumController.selected.deleted}" title="#{bundle.CreateCurriculumTitle_deleted}" required="true" requiredMessage="#{bundle.CreateCurriculumRequiredMessage_deleted}"/>
+                    <h:outputLabel value="#{bundle.CreateCurriculumLabel_specialityId}" for="specialityId" />
+                    <h:selectOneMenu id="specialityId" value="#{curriculumController.selected.specialityId}" title="#{bundle.CreateCurriculumTitle_specialityId}" required="true" requiredMessage="#{bundle.CreateCurriculumRequiredMessage_specialityId}">
+                        <f:selectItems value="#{specialityController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateCurriculumLabel_educationFormId}" for="educationFormId" />
+                    <h:selectOneMenu id="educationFormId" value="#{curriculumController.selected.educationFormId}" title="#{bundle.CreateCurriculumTitle_educationFormId}" required="true" requiredMessage="#{bundle.CreateCurriculumRequiredMessage_educationFormId}">
+                        <f:selectItems value="#{educationFormController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{curriculumController.create}" value="#{bundle.CreateCurriculumSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{curriculumController.prepareList}" value="#{bundle.CreateCurriculumShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.CreateCurriculumIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

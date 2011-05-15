@@ -1,0 +1,492 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.prime.com.tr/ui">
+    <h:head>
+        <title>Diplom</title>
+        <h:outputStylesheet name="css/jsfcrud.css"/>
+    </h:head>
+    <h:body>
+
+        <h:form id="form">
+
+           
+
+            <p:growl id="growl"/>
+            <p:dataTable id="table" 
+                         value="#{curriculumController.items}"
+                         var="curr"
+                         emptyMessage="No results" 
+                         dynamic="true"
+                         style="width: 1000px"
+                         selection="#{curriculumController.editCurr}" 
+                         selectionMode="single"
+                         onRowSelectUpdate="edit, formgraphic"
+                         onRowSelectComplete="editDialog.show()">
+                         
+                <p:column>
+                    <f:facet name="header">
+                        id
+                    </f:facet>
+                    <h:outputText value="#{curr.id}"/>
+                </p:column>
+
+                <p:column sortBy="#{curr.educationFormId.name}" filterBy="#{curr.educationFormId.name}" >
+                    <f:facet name="header">
+                        educationForm
+                    </f:facet>
+                    <h:outputText value="#{curr.educationFormId.name}" />
+                </p:column>
+
+                <p:column sortBy="#{curr.specialityId.name}" filterBy="#{curr.specialityId.name}">
+                    <f:facet name="header">
+                        speciality
+                    </f:facet>
+                    <h:outputText value="#{curr.specialityId.name}" />
+                </p:column>
+
+                <p:column sortBy="#{curr.startYear}" filterBy="#{curr.startYear}">
+                    <f:facet name="header">
+                        startYear
+                    </f:facet>
+                    <h:outputText value="#{curr.startYear}" />
+                </p:column>
+
+                <p:column>
+                    <f:facet name="header">
+                        Years
+                    </f:facet>
+                    <h:outputText value="#{curr.tuitionDurationYears}" />
+                </p:column>
+
+                <p:column>
+                    <f:facet name="header">
+                        Months
+                    </f:facet>
+                    <h:outputText value="#{curr.tuitionDurationMonths}" />
+                </p:column>
+
+               
+
+                <f:facet name="footer">
+                    <p:commandButton type="button" value="Add"
+                                     onclick="dlg.show()" image="ui-icon ui-icon-plus"/>
+                </f:facet>
+
+            </p:dataTable>
+
+
+        </h:form>
+
+        <p:dialog header="Enter ..." widgetVar="dlg" width="350" draggable="false" resizable="false">
+
+            <h:form>
+
+                <h:panelGrid columns="3" cellpadding="5" id="grid">
+
+                    <h:outputLabel value="spec:" for="specialityId"/>
+                    <h:selectOneMenu id="specialityId" value="#{curriculumController.selected.specialityId}" title="#{bundle.CreateCurriculumTitle_specialityId}" required="true">
+                        <f:selectItems value="#{specialityController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <p:message for="specialityId" display="icon" />
+
+                    <h:outputLabel value="#{bundle.CreateCurriculumLabel_educationFormId}" for="educationFormId" />
+                    <h:selectOneMenu id="educationFormId" value="#{curriculumController.selected.educationFormId}" required="true">
+                        <f:selectItems value="#{educationFormController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <p:message for="educationFormId" display="icon" />
+
+                    <h:outputLabel value="year:" for="startYear"/>
+                    <p:spinner id="startYear" value="#{curriculumController.selected.startYear}" min="2000" max="2015" width="32" showOn="hover"/>
+                    <p:message for="startYear" display="icon" />
+
+                    <h:outputLabel value="years:" for="tuitionDurationYears"/>
+                    <p:inputMask id="tuitionDurationYears" value="#{curriculumController.selected.tuitionDurationYears}" mask="9" required="true"/>
+                    <p:message for="tuitionDurationYears" display="icon" />
+
+                    <h:outputLabel value="months:" for="tuitionDurationMonths"/>
+                    <p:inputMask id="tuitionDurationMonths" value="#{curriculumController.selected.tuitionDurationMonths}" mask="19" required="true"/>
+                    <p:message for="tuitionDurationMonths" display="icon" />
+
+
+                </h:panelGrid>
+                <hr/>
+                <p:commandButton value="Save" 
+                                 action="#{curriculumController.create}"
+                                 update="form,grid, form:table"
+                                 oncomplete="dlg.hide()"
+                                 image="ui-icon ui-icon-disk"
+                                 style="position: relative; left: 250px;"/>
+               
+            </h:form>
+        </p:dialog>
+
+
+        <p:dialog header="Detail" widgetVar="editDialog" resizable="false"
+                  width="350" showEffect="explode" hideEffect="explode" modal="true">
+            <h:form id="edit">
+                <h:panelGrid id="display" columns="2" cellpadding="4">
+
+                    <h:outputLabel value="spec:" for="specialityId"/>
+                    <h:selectOneMenu id="specialityId" value="#{curriculumController.editCurr.specialityId}" title="#{bundle.CreateCurriculumTitle_specialityId}" >
+                        <f:selectItems value="#{specialityController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+
+                    <h:outputLabel value="#{bundle.CreateCurriculumLabel_educationFormId}" for="educationFormId" />
+                    <h:selectOneMenu id="educationFormId" value="#{curriculumController.editCurr.educationFormId}">
+                        <f:selectItems value="#{educationFormController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="year:" for="startYear"/>
+
+                    <p:inputMask id="startYear" value="#{curriculumController.editCurr.startYear}" mask="2099" />
+                    <h:outputLabel value="years:" for="tuitionDurationYears"/>
+                    <p:inputMask id="tuitionDurationYears" value="#{curriculumController.editCurr.tuitionDurationYears}" mask="9" />
+
+                    <h:outputLabel value="months:" for="tuitionDurationMonths"/>
+                    <p:inputMask id="tuitionDurationMonths" value="#{curriculumController.editCurr.tuitionDurationMonths}" mask="99" />
+
+                </h:panelGrid><hr/>
+                <p:commandButton value="Edit" action="#{curriculumController.update}" update="form" onsuccess="editDialog.hide()" image="ui-icon ui-icon-pencil"/>
+                <p:commandButton id="delete" value="Destroy" onclick="confirmation.show()" type="button" image="ui-icon ui-icon-trash"/>
+                <p:commandButton value="Graphic" onclick="graphic.show()" action="#{curriculumController.createGraphic}" update="form, graphic, formgraphic"/>
+                 <h:commandLink value="GRAP" action="/graphic" immediate="true" />
+            </h:form>
+        </p:dialog>
+
+        <p:dialog widgetVar="graphic" width="1200" draggable="false" >
+            <h:form id="formgraphic">
+                
+                <p:dataTable value="#{curriculumGraphicController.tableList}" var="item" style="width: 30px; font-size: 8px;">
+                    <p:column style="width: 15px;">
+                    <f:facet name="header">
+                        1
+                    </f:facet>
+                     <h:selectOneMenu  value="#{item.week[0]}">
+                     <f:selectItems value="#{curriculumPhaseController.abbrs}"/>
+                    </h:selectOneMenu>
+                </p:column>
+                     <p:column>
+                    <f:facet name="header">
+                        2
+                    </f:facet>
+                     <h:selectOneMenu  value="#{item.week[1]}">
+                     <f:selectItems value="#{curriculumPhaseController.abbrs}"/>
+                    </h:selectOneMenu>
+                </p:column>
+                     <p:column>
+                    <f:facet name="header">
+                        3
+                    </f:facet>
+                     <h:selectOneMenu  value="#{item.week[2]}">
+                     <f:selectItems value="#{curriculumPhaseController.abbrs}"/>
+                    </h:selectOneMenu>
+                </p:column>
+                     <p:column>
+                    <f:facet name="header">
+                        4
+                    </f:facet>
+                     <h:selectOneMenu  value="#{item.week[3]}">
+                     <f:selectItems value="#{curriculumPhaseController.abbrs}"/>
+                    </h:selectOneMenu>
+                </p:column>
+                     <p:column>
+                    <f:facet name="header">
+                        5
+                    </f:facet>
+                     <h:selectOneMenu  value="#{item.week[4]}">
+                     <f:selectItems value="#{curriculumPhaseController.abbrs}"/>
+                    </h:selectOneMenu>
+                </p:column>
+                     <p:column>
+                    <f:facet name="header">
+                        6
+                    </f:facet>
+                     <h:selectOneMenu  value="#{item.week[5]}">
+                     <f:selectItems value="#{curriculumPhaseController.abbrs}"/>
+                    </h:selectOneMenu>
+                </p:column>
+                     <p:column>
+                    <f:facet name="header">
+                        7
+                    </f:facet>
+                     <h:selectOneMenu  value="#{item.week[6]}">
+                     <f:selectItems value="#{curriculumPhaseController.abbrs}"/>
+                    </h:selectOneMenu>
+                </p:column>
+                     <p:column>
+                    <f:facet name="header">
+                        8
+                    </f:facet>
+                     <h:selectOneMenu  value="#{item.week[7]}">
+                     <f:selectItems value="#{curriculumPhaseController.abbrs}"/>
+                    </h:selectOneMenu>
+                </p:column>
+                     <p:column>
+                    <f:facet name="header">
+                       9
+                    </f:facet>
+                     <h:selectOneMenu  value="#{item.week[8]}">
+                     <f:selectItems value="#{curriculumPhaseController.abbrs}"/>
+                    </h:selectOneMenu>
+                </p:column>
+                     <p:column>
+                    <f:facet name="header">
+                        10
+                    </f:facet>
+                     <h:selectOneMenu  value="#{item.week[9]}">
+                     <f:selectItems value="#{curriculumPhaseController.abbrs}"/>
+                    </h:selectOneMenu>
+                </p:column>
+                     <p:column>
+                    <f:facet name="header">
+                        11
+                    </f:facet>
+                     <h:selectOneMenu  value="#{item.week[10]}">
+                     <f:selectItems value="#{curriculumPhaseController.abbrs}"/>
+                    </h:selectOneMenu>
+                </p:column>
+                     <p:column>
+                    <f:facet name="header">
+                        12
+                    </f:facet>
+                     <h:selectOneMenu  value="#{item.week[11]}">
+                     <f:selectItems value="#{curriculumPhaseController.abbrs}"/>
+                    </h:selectOneMenu>
+                </p:column>
+                     <p:column>
+                    <f:facet name="header">
+                        13
+                    </f:facet>
+                     <h:selectOneMenu  value="#{item.week[12]}">
+                     <f:selectItems value="#{curriculumPhaseController.abbrs}"/>
+                    </h:selectOneMenu>
+                </p:column>
+                     <p:column>
+                    <f:facet name="header">
+                        14
+                    </f:facet>
+                     <h:selectOneMenu  value="#{item.week[13]}">
+                     <f:selectItems value="#{curriculumPhaseController.abbrs}"/>
+                    </h:selectOneMenu>
+                </p:column>
+                     <p:column>
+                    <f:facet name="header">
+                       15
+                    </f:facet>
+                     <h:selectOneMenu  value="#{item.week[14]}">
+                     <f:selectItems value="#{curriculumPhaseController.abbrs}"/>
+                    </h:selectOneMenu>
+                </p:column>
+                     <p:column>
+                    <f:facet name="header">
+                        16
+                    </f:facet>
+                     <h:selectOneMenu  value="#{item.week[15]}">
+                     <f:selectItems value="#{curriculumPhaseController.abbrs}"/>
+                    </h:selectOneMenu>
+                </p:column>
+                     <p:column>
+                    <f:facet name="header">
+                        17
+                    </f:facet>
+                     <h:selectOneMenu  value="#{item.week[16]}">
+                     <f:selectItems value="#{curriculumPhaseController.abbrs}"/>
+                    </h:selectOneMenu>
+                </p:column>
+                     <p:column>
+                    <f:facet name="header">
+                        18
+                    </f:facet>
+                     <h:selectOneMenu  value="#{item.week[17]}">
+                     <f:selectItems value="#{curriculumPhaseController.abbrs}"/>
+                    </h:selectOneMenu>
+                </p:column>
+                     <p:column>
+                    <f:facet name="header">
+                       19
+                    </f:facet>
+                     <h:selectOneMenu  value="#{item.week[18]}">
+                     <f:selectItems value="#{curriculumPhaseController.abbrs}"/>
+                    </h:selectOneMenu>
+                </p:column>
+                     <p:column>
+                    <f:facet name="header">
+                       20
+                    </f:facet>
+                     <h:selectOneMenu  value="#{item.week[19]}">
+                     <f:selectItems value="#{curriculumPhaseController.abbrs}"/>
+                    </h:selectOneMenu>
+                </p:column>
+                     <p:column>
+                    <f:facet name="header">
+                       21
+                    </f:facet>
+                     <h:selectOneMenu  value="#{item.week[20]}">
+                     <f:selectItems value="#{curriculumPhaseController.abbrs}"/>
+                    </h:selectOneMenu>
+                </p:column>
+                     <p:column>
+                    <f:facet name="header">
+                        22
+                    </f:facet>
+                     <h:selectOneMenu  value="#{item.week[21]}">
+                     <f:selectItems value="#{curriculumPhaseController.abbrs}"/>
+                    </h:selectOneMenu>
+                </p:column>
+                     <p:column>
+                    <f:facet name="header">
+                        23
+                    </f:facet>
+                     <h:selectOneMenu  value="#{item.week[22]}">
+                     <f:selectItems value="#{curriculumPhaseController.abbrs}"/>
+                    </h:selectOneMenu>
+                </p:column>
+                     <p:column>
+                    <f:facet name="header">
+                        24
+                    </f:facet>
+                     <h:selectOneMenu  value="#{item.week[23]}">
+                     <f:selectItems value="#{curriculumPhaseController.abbrs}"/>
+                    </h:selectOneMenu>
+                </p:column>
+                     <p:column>
+                    <f:facet name="header">
+                        25
+                    </f:facet>
+                     <h:selectOneMenu  value="#{item.week[24]}">
+                     <f:selectItems value="#{curriculumPhaseController.abbrs}"/>
+                    </h:selectOneMenu>
+                </p:column>
+                     <p:column>
+                    <f:facet name="header">
+                        26
+                    </f:facet>
+                     <h:selectOneMenu  value="#{item.week[25]}">
+                     <f:selectItems value="#{curriculumPhaseController.abbrs}"/>
+                    </h:selectOneMenu>
+                </p:column>
+                     <p:column>
+                    <f:facet name="header">
+                        27
+                    </f:facet>
+                     <h:selectOneMenu  value="#{item.week[26]}">
+                     <f:selectItems value="#{curriculumPhaseController.abbrs}"/>
+                    </h:selectOneMenu>
+                </p:column>
+                     <p:column>
+                    <f:facet name="header">
+                        28
+                    </f:facet>
+                     <h:selectOneMenu  value="#{item.week[27]}">
+                     <f:selectItems value="#{curriculumPhaseController.abbrs}"/>
+                    </h:selectOneMenu>
+                </p:column>
+                     <p:column>
+                    <f:facet name="header">
+                       29
+                    </f:facet>
+                     <h:selectOneMenu  value="#{item.week[28]}">
+                     <f:selectItems value="#{curriculumPhaseController.abbrs}"/>
+                    </h:selectOneMenu>
+                </p:column>
+                     <p:column>
+                    <f:facet name="header">
+                        30
+                    </f:facet>
+                     <h:selectOneMenu  value="#{item.week[29]}">
+                     <f:selectItems value="#{curriculumPhaseController.abbrs}"/>
+                    </h:selectOneMenu>
+                </p:column>
+                     <p:column>
+                    <f:facet name="header">
+                       31
+                    </f:facet>
+                     <h:selectOneMenu  value="#{item.week[30]}">
+                     <f:selectItems value="#{curriculumPhaseController.abbrs}"/>
+                    </h:selectOneMenu>
+                </p:column>
+                     <p:column>
+                    <f:facet name="header">
+                        32
+                    </f:facet>
+                     <h:selectOneMenu  value="#{item.week[31]}">
+                     <f:selectItems value="#{curriculumPhaseController.abbrs}"/>
+                    </h:selectOneMenu>
+                </p:column>
+                     <p:column>
+                    <f:facet name="header">
+                        33
+                    </f:facet>
+                     <h:selectOneMenu  value="#{item.week[32]}">
+                     <f:selectItems value="#{curriculumPhaseController.abbrs}"/>
+                    </h:selectOneMenu>
+                </p:column>
+                     <p:column>
+                    <f:facet name="header">
+                        34
+                    </f:facet>
+                     <h:selectOneMenu  value="#{item.week[33]}">
+                     <f:selectItems value="#{curriculumPhaseController.abbrs}"/>
+                    </h:selectOneMenu>
+                </p:column>
+                     <p:column>
+                    <f:facet name="header">
+                        35
+                    </f:facet>
+                     <h:selectOneMenu  value="#{item.week[34]}">
+                     <f:selectItems value="#{curriculumPhaseController.abbrs}"/>
+                    </h:selectOneMenu>
+                </p:column>
+                     <p:column>
+                    <f:facet name="header">
+                       36
+                    </f:facet>
+                     <h:selectOneMenu  value="#{item.week[35]}">
+                     <f:selectItems value="#{curriculumPhaseController.abbrs}"/>
+                    </h:selectOneMenu>
+                </p:column>
+                   
+
+                <f:facet name="footer">
+                        <p:commandLink value="Save" action="#{curriculumGraphicController.saveGraphic}" update="formgraphic" style="width: 30px; font-size: 8px;"/>
+                </f:facet>
+
+                </p:dataTable>
+                
+           </h:form>
+        </p:dialog>
+
+
+        <p:confirmDialog message="Are you sure?"
+                         showEffect="slide" hideEffect="slide"
+                         header="Initiating destroy process" severity="alert" widgetVar="confirmation" modal="true">
+
+            <h:form>
+                <p:commandButton value="Yes" action="#{curriculumController.destroy}" update="form:table" onclick="confirmation.hide();editDialog.hide();"
+                                 image="ui-icon ui-icon-trash"/>
+                <p:commandButton value="No" onclick="confirmation.hide()" image="ui-icon ui-icon-close"/>
+
+            </h:form>
+        </p:confirmDialog>
+                   
+                <h:form>
+                    <h:commandLink action="/course/List" value="Show All Course Items"/>
+                </h:form>
+                <h:form>
+                    <h:commandLink action="/curriculumCourse/List" value="Show All CurriculumCourse Items"/>
+                </h:form>
+                <h:form>
+                    <h:commandLink action="/curriculumCourseCategory/List" value="Show All CurriculumCourseCategory Items"/>
+                </h:form>
+                <h:form>
+                    <h:commandLink action="/curriculumCourseSemester/List" value="Show All CurriculumCourseSemester Items"/>
+                </h:form>
+</h:body>
+
+
+
+
+</html>
+

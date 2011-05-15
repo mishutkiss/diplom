@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="Project" version="2">
+    <Scope Scope="Faces Configuration Only"/>
+    <Scope Scope="Project">
+        <Node id="template.xhtml" x="400" y="150" zoom="true"/>
+        <Node id="educationForm/List.xhtml" x="650" y="150" zoom="true"/>
+        <Node id="curriculumCourseCategory/Edit.xhtml" x="900" y="750" zoom="true"/>
+        <Node id="curriculumGraphic/View.xhtml" x="150" y="750" zoom="true"/>
+        <Node id="curriculumCourseCategory/View.xhtml" x="1650" y="450" zoom="true"/>
+        <Node id="curriculumCourseSemester/View.xhtml" x="900" y="600" zoom="true"/>
+        <Node id="curriculumCourseSemester/Create.xhtml" x="650" y="900" zoom="true"/>
+        <Node id="curriculumCourseSemester/List.xhtml" x="1150" y="600" zoom="true"/>
+        <Node id="curriculumPhase/List.xhtml" x="900" y="450" zoom="true"/>
+        <Node id="speciality/List.xhtml" x="400" y="600" zoom="true"/>
+        <Node id="curriculumCourse/View.xhtml" x="150" y="1050" zoom="true"/>
+        <Node id="curriculum/List.xhtml" x="150" y="300" zoom="true"/>
+        <Node id="curriculum/View.xhtml" x="900" y="300" zoom="true"/>
+        <Node id="curriculumGraphic/Create.xhtml" x="400" y="750" zoom="true"/>
+        <Node id="educationForm/Create.xhtml" x="150" y="600" zoom="true"/>
+        <Node id="curriculumGraphic/Edit.xhtml" x="1650" y="150" zoom="true"/>
+        <Node id="curriculum/Create.xhtml" x="1150" y="150" zoom="true"/>
+        <Node id="course/List.xhtml" x="150" y="1200" zoom="true"/>
+        <Node id="course/Edit.xhtml" x="1400" y="450" zoom="true"/>
+        <Node id="speciality/Edit.xhtml" x="150" y="150" zoom="true"/>
+        <Node id="curriculumCourse/Edit.xhtml" x="400" y="1050" zoom="true"/>
+        <Node id="speciality/View.xhtml" x="150" y="450" zoom="true"/>
+        <Node id="curriculumCourseSemester/Edit.xhtml" x="1900" y="300" zoom="true"/>
+        <Node id="curriculum/Edit.xhtml" x="400" y="300" zoom="true"/>
+        <Node id="curriculumCourse/Create.xhtml" x="400" y="900" zoom="true"/>
+        <Node id="educationForm/View.xhtml" x="400" y="450" zoom="true"/>
+        <Node id="educationForm/Edit.xhtml" x="900" y="150" zoom="true"/>
+        <Node id="curriculumCourse/List.xhtml" x="2150" y="150" zoom="true"/>
+        <Node id="course/View.xhtml" x="1650" y="300" zoom="true"/>
+        <Node id="curriculumPhase/View.xhtml" x="1150" y="300" zoom="true"/>
+        <Node id="curriculumCourseCategory/List.xhtml" x="650" y="750" zoom="true"/>
+        <Node id="curriculumCourseCategory/Create.xhtml" x="1900" y="150" zoom="true"/>
+        <Node id="graphic.xhtml" x="1400" y="300" zoom="true"/>
+        <Node id="curriculumPhase/Edit.xhtml" x="1400" y="150" zoom="true"/>
+        <Node id="index.xhtml" x="650" y="300" zoom="true"/>
+        <Node id="speciality/Create.xhtml" x="650" y="450" zoom="true"/>
+        <Node id="curriculumGraphic/List.xhtml" x="150" y="900" zoom="true"/>
+        <Node id="curriculumPhase/Create.xhtml" x="650" y="600" zoom="true"/>
+        <Node id="course/Create.xhtml" x="1150" y="450" zoom="true"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations"/>
+</Scene>

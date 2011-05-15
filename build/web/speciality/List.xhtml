@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListSpecialityTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+        <h:form styleClass="jsfcrud_list_form">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:outputText escape="false" value="#{bundle.ListSpecialityEmpty}" rendered="#{specialityController.items.rowCount == 0}"/>
+            <h:panelGroup rendered="#{specialityController.items.rowCount > 0}">
+                <h:outputText value="#{specialityController.pagination.pageFirstItem + 1}..#{specialityController.pagination.pageLastItem + 1}/#{specialityController.pagination.itemsCount}"/>&nbsp;
+                <h:commandLink action="#{specialityController.previous}" value="#{bundle.Previous} #{specialityController.pagination.pageSize}" rendered="#{specialityController.pagination.hasPreviousPage}"/>&nbsp;
+                <h:commandLink action="#{specialityController.next}" value="#{bundle.Next} #{specialityController.pagination.pageSize}" rendered="#{specialityController.pagination.hasNextPage}"/>&nbsp;
+                <h:dataTable value="#{specialityController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListSpecialityTitle_id}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.id}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListSpecialityTitle_refCode}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.refCode}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListSpecialityTitle_name}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.name}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListSpecialityTitle_facultyId}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.facultyId}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListSpecialityTitle_departmentId}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.departmentId}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListSpecialityTitle_qualification}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.qualification}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListSpecialityTitle_active1}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.active1}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListSpecialityTitle_qualificationLevelId}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.qualificationLevelId}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListSpecialityTitle_qualificationCode}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.qualificationCode}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="&nbsp;"/>
+                        </f:facet>
+                        <h:commandLink action="#{specialityController.prepareView}" value="#{bundle.ListSpecialityViewLink}"/>
+                        <h:outputText value=" "/>
+                        <h:commandLink action="#{specialityController.prepareEdit}" value="#{bundle.ListSpecialityEditLink}"/>
+                        <h:outputText value=" "/>
+                        <h:commandLink action="#{specialityController.destroy}" value="#{bundle.ListSpecialityDestroyLink}"/>
+                    </h:column>
+                </h:dataTable>
+            </h:panelGroup>
+            <br />
+            <h:commandLink action="#{specialityController.prepareCreate}" value="#{bundle.ListSpecialityCreateLink}"/>
+            <br />
+            <br />
+            <h:commandLink value="#{bundle.ListSpecialityIndexLink}" action="/index" immediate="true" />
+        </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

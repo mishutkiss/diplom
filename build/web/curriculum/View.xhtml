@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewCurriculumTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewCurriculumLabel_id}"/>
+                    <h:outputText value="#{curriculumController.selected.id}" title="#{bundle.ViewCurriculumTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewCurriculumLabel_startYear}"/>
+                    <h:outputText value="#{curriculumController.selected.startYear}" title="#{bundle.ViewCurriculumTitle_startYear}"/>
+                    <h:outputText value="#{bundle.ViewCurriculumLabel_tuitionDurationYears}"/>
+                    <h:outputText value="#{curriculumController.selected.tuitionDurationYears}" title="#{bundle.ViewCurriculumTitle_tuitionDurationYears}"/>
+                    <h:outputText value="#{bundle.ViewCurriculumLabel_tuitionDurationMonths}"/>
+                    <h:outputText value="#{curriculumController.selected.tuitionDurationMonths}" title="#{bundle.ViewCurriculumTitle_tuitionDurationMonths}"/>
+                    <h:outputText value="#{bundle.ViewCurriculumLabel_deleted}"/>
+                    <h:outputText value="#{curriculumController.selected.deleted}" title="#{bundle.ViewCurriculumTitle_deleted}"/>
+                    <h:outputText value="#{bundle.ViewCurriculumLabel_specialityId}"/>
+                    <h:outputText value="#{curriculumController.selected.specialityId}" title="#{bundle.ViewCurriculumTitle_specialityId}"/>
+                    <h:outputText value="#{bundle.ViewCurriculumLabel_educationFormId}"/>
+                    <h:outputText value="#{curriculumController.selected.educationFormId}" title="#{bundle.ViewCurriculumTitle_educationFormId}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{curriculumController.destroyAndView}" value="#{bundle.ViewCurriculumDestroyLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="Edit" value="#{bundle.ViewCurriculumEditLink}"/>
+                <br />
+                <h:commandLink action="#{curriculumController.prepareCreate}" value="#{bundle.ViewCurriculumCreateLink}" />
+                <br />
+                <h:commandLink action="#{curriculumController.prepareList}" value="#{bundle.ViewCurriculumShowAllLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ViewCurriculumIndexLink}" action="/index" immediate="true" />
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

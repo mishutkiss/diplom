@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewCurriculumCourseTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewCurriculumCourseLabel_id}"/>
+                    <h:outputText value="#{curriculumCourseController.selected.id}" title="#{bundle.ViewCurriculumCourseTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewCurriculumCourseLabel_ectsCredits}"/>
+                    <h:outputText value="#{curriculumCourseController.selected.ectsCredits}" title="#{bundle.ViewCurriculumCourseTitle_ectsCredits}"/>
+                    <h:outputText value="#{bundle.ViewCurriculumCourseLabel_totalHours}"/>
+                    <h:outputText value="#{curriculumCourseController.selected.totalHours}" title="#{bundle.ViewCurriculumCourseTitle_totalHours}"/>
+                    <h:outputText value="#{bundle.ViewCurriculumCourseLabel_inclassHours}"/>
+                    <h:outputText value="#{curriculumCourseController.selected.inclassHours}" title="#{bundle.ViewCurriculumCourseTitle_inclassHours}"/>
+                    <h:outputText value="#{bundle.ViewCurriculumCourseLabel_lectureHours}"/>
+                    <h:outputText value="#{curriculumCourseController.selected.lectureHours}" title="#{bundle.ViewCurriculumCourseTitle_lectureHours}"/>
+                    <h:outputText value="#{bundle.ViewCurriculumCourseLabel_laboratoryClassHours}"/>
+                    <h:outputText value="#{curriculumCourseController.selected.laboratoryClassHours}" title="#{bundle.ViewCurriculumCourseTitle_laboratoryClassHours}"/>
+                    <h:outputText value="#{bundle.ViewCurriculumCourseLabel_practicalClassHours}"/>
+                    <h:outputText value="#{curriculumCourseController.selected.practicalClassHours}" title="#{bundle.ViewCurriculumCourseTitle_practicalClassHours}"/>
+                    <h:outputText value="#{bundle.ViewCurriculumCourseLabel_selfStudyHours}"/>
+                    <h:outputText value="#{curriculumCourseController.selected.selfStudyHours}" title="#{bundle.ViewCurriculumCourseTitle_selfStudyHours}"/>
+                    <h:outputText value="#{bundle.ViewCurriculumCourseLabel_course}"/>
+                    <h:outputText value="#{curriculumCourseController.selected.course}" title="#{bundle.ViewCurriculumCourseTitle_course}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{curriculumCourseController.destroyAndView}" value="#{bundle.ViewCurriculumCourseDestroyLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="Edit" value="#{bundle.ViewCurriculumCourseEditLink}"/>
+                <br />
+                <h:commandLink action="#{curriculumCourseController.prepareCreate}" value="#{bundle.ViewCurriculumCourseCreateLink}" />
+                <br />
+                <h:commandLink action="#{curriculumCourseController.prepareList}" value="#{bundle.ViewCurriculumCourseShowAllLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ViewCurriculumCourseIndexLink}" action="/index" immediate="true" />
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

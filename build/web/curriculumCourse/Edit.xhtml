@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditCurriculumCourseTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditCurriculumCourseLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{curriculumCourseController.selected.id}" title="#{bundle.EditCurriculumCourseTitle_id}" required="true" requiredMessage="#{bundle.EditCurriculumCourseRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.EditCurriculumCourseLabel_ectsCredits}" for="ectsCredits" />
+                    <h:inputText id="ectsCredits" value="#{curriculumCourseController.selected.ectsCredits}" title="#{bundle.EditCurriculumCourseTitle_ectsCredits}" required="true" requiredMessage="#{bundle.EditCurriculumCourseRequiredMessage_ectsCredits}"/>
+                    <h:outputLabel value="#{bundle.EditCurriculumCourseLabel_totalHours}" for="totalHours" />
+                    <h:inputText id="totalHours" value="#{curriculumCourseController.selected.totalHours}" title="#{bundle.EditCurriculumCourseTitle_totalHours}" required="true" requiredMessage="#{bundle.EditCurriculumCourseRequiredMessage_totalHours}"/>
+                    <h:outputLabel value="#{bundle.EditCurriculumCourseLabel_inclassHours}" for="inclassHours" />
+                    <h:inputText id="inclassHours" value="#{curriculumCourseController.selected.inclassHours}" title="#{bundle.EditCurriculumCourseTitle_inclassHours}" required="true" requiredMessage="#{bundle.EditCurriculumCourseRequiredMessage_inclassHours}"/>
+                    <h:outputLabel value="#{bundle.EditCurriculumCourseLabel_lectureHours}" for="lectureHours" />
+                    <h:inputText id="lectureHours" value="#{curriculumCourseController.selected.lectureHours}" title="#{bundle.EditCurriculumCourseTitle_lectureHours}" required="true" requiredMessage="#{bundle.EditCurriculumCourseRequiredMessage_lectureHours}"/>
+                    <h:outputLabel value="#{bundle.EditCurriculumCourseLabel_laboratoryClassHours}" for="laboratoryClassHours" />
+                    <h:inputText id="laboratoryClassHours" value="#{curriculumCourseController.selected.laboratoryClassHours}" title="#{bundle.EditCurriculumCourseTitle_laboratoryClassHours}" required="true" requiredMessage="#{bundle.EditCurriculumCourseRequiredMessage_laboratoryClassHours}"/>
+                    <h:outputLabel value="#{bundle.EditCurriculumCourseLabel_practicalClassHours}" for="practicalClassHours" />
+                    <h:inputText id="practicalClassHours" value="#{curriculumCourseController.selected.practicalClassHours}" title="#{bundle.EditCurriculumCourseTitle_practicalClassHours}" required="true" requiredMessage="#{bundle.EditCurriculumCourseRequiredMessage_practicalClassHours}"/>
+                    <h:outputLabel value="#{bundle.EditCurriculumCourseLabel_selfStudyHours}" for="selfStudyHours" />
+                    <h:inputText id="selfStudyHours" value="#{curriculumCourseController.selected.selfStudyHours}" title="#{bundle.EditCurriculumCourseTitle_selfStudyHours}" required="true" requiredMessage="#{bundle.EditCurriculumCourseRequiredMessage_selfStudyHours}"/>
+                    <h:outputLabel value="#{bundle.EditCurriculumCourseLabel_course}" for="course" />
+                    <h:selectOneMenu id="course" value="#{curriculumCourseController.selected.course}" title="#{bundle.EditCurriculumCourseTitle_course}" required="true" requiredMessage="#{bundle.EditCurriculumCourseRequiredMessage_course}">
+                        <f:selectItems value="#{courseController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{curriculumCourseController.update}" value="#{bundle.EditCurriculumCourseSaveLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="View" value="#{bundle.EditCurriculumCourseViewLink}" immediate="true"/>
+                <br />
+                <h:commandLink action="#{curriculumCourseController.prepareList}" value="#{bundle.EditCurriculumCourseShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.EditCurriculumCourseIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

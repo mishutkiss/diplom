@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewCurriculumCourseSemesterTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewCurriculumCourseSemesterLabel_id}"/>
+                    <h:outputText value="#{curriculumCourseSemesterController.selected.id}" title="#{bundle.ViewCurriculumCourseSemesterTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewCurriculumCourseSemesterLabel_semester}"/>
+                    <h:outputText value="#{curriculumCourseSemesterController.selected.semester}" title="#{bundle.ViewCurriculumCourseSemesterTitle_semester}"/>
+                    <h:outputText value="#{bundle.ViewCurriculumCourseSemesterLabel_exam}"/>
+                    <h:outputText value="#{curriculumCourseSemesterController.selected.exam}" title="#{bundle.ViewCurriculumCourseSemesterTitle_exam}"/>
+                    <h:outputText value="#{bundle.ViewCurriculumCourseSemesterLabel_credit}"/>
+                    <h:outputText value="#{curriculumCourseSemesterController.selected.credit}" title="#{bundle.ViewCurriculumCourseSemesterTitle_credit}"/>
+                    <h:outputText value="#{bundle.ViewCurriculumCourseSemesterLabel_calculationGraphicalWork}"/>
+                    <h:outputText value="#{curriculumCourseSemesterController.selected.calculationGraphicalWork}" title="#{bundle.ViewCurriculumCourseSemesterTitle_calculationGraphicalWork}"/>
+                    <h:outputText value="#{bundle.ViewCurriculumCourseSemesterLabel_coursePaper}"/>
+                    <h:outputText value="#{curriculumCourseSemesterController.selected.coursePaper}" title="#{bundle.ViewCurriculumCourseSemesterTitle_coursePaper}"/>
+                    <h:outputText value="#{bundle.ViewCurriculumCourseSemesterLabel_courseProject}"/>
+                    <h:outputText value="#{curriculumCourseSemesterController.selected.courseProject}" title="#{bundle.ViewCurriculumCourseSemesterTitle_courseProject}"/>
+                    <h:outputText value="#{bundle.ViewCurriculumCourseSemesterLabel_hoursPerWeek}"/>
+                    <h:outputText value="#{curriculumCourseSemesterController.selected.hoursPerWeek}" title="#{bundle.ViewCurriculumCourseSemesterTitle_hoursPerWeek}"/>
+                    <h:outputText value="#{bundle.ViewCurriculumCourseSemesterLabel_course}"/>
+                    <h:outputText value="#{curriculumCourseSemesterController.selected.course}" title="#{bundle.ViewCurriculumCourseSemesterTitle_course}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{curriculumCourseSemesterController.destroyAndView}" value="#{bundle.ViewCurriculumCourseSemesterDestroyLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="Edit" value="#{bundle.ViewCurriculumCourseSemesterEditLink}"/>
+                <br />
+                <h:commandLink action="#{curriculumCourseSemesterController.prepareCreate}" value="#{bundle.ViewCurriculumCourseSemesterCreateLink}" />
+                <br />
+                <h:commandLink action="#{curriculumCourseSemesterController.prepareList}" value="#{bundle.ViewCurriculumCourseSemesterShowAllLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ViewCurriculumCourseSemesterIndexLink}" action="/index" immediate="true" />
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

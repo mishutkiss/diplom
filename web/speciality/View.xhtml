@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewSpecialityTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewSpecialityLabel_id}"/>
+                    <h:outputText value="#{specialityController.selected.id}" title="#{bundle.ViewSpecialityTitle_id}"/>
+                    <h:outputText value="#{bundle.ViewSpecialityLabel_refCode}"/>
+                    <h:outputText value="#{specialityController.selected.refCode}" title="#{bundle.ViewSpecialityTitle_refCode}"/>
+                    <h:outputText value="#{bundle.ViewSpecialityLabel_name}"/>
+                    <h:outputText value="#{specialityController.selected.name}" title="#{bundle.ViewSpecialityTitle_name}"/>
+                    <h:outputText value="#{bundle.ViewSpecialityLabel_facultyId}"/>
+                    <h:outputText value="#{specialityController.selected.facultyId}" title="#{bundle.ViewSpecialityTitle_facultyId}"/>
+                    <h:outputText value="#{bundle.ViewSpecialityLabel_departmentId}"/>
+                    <h:outputText value="#{specialityController.selected.departmentId}" title="#{bundle.ViewSpecialityTitle_departmentId}"/>
+                    <h:outputText value="#{bundle.ViewSpecialityLabel_qualification}"/>
+                    <h:outputText value="#{specialityController.selected.qualification}" title="#{bundle.ViewSpecialityTitle_qualification}"/>
+                    <h:outputText value="#{bundle.ViewSpecialityLabel_active1}"/>
+                    <h:outputText value="#{specialityController.selected.active1}" title="#{bundle.ViewSpecialityTitle_active1}"/>
+                    <h:outputText value="#{bundle.ViewSpecialityLabel_qualificationLevelId}"/>
+                    <h:outputText value="#{specialityController.selected.qualificationLevelId}" title="#{bundle.ViewSpecialityTitle_qualificationLevelId}"/>
+                    <h:outputText value="#{bundle.ViewSpecialityLabel_qualificationCode}"/>
+                    <h:outputText value="#{specialityController.selected.qualificationCode}" title="#{bundle.ViewSpecialityTitle_qualificationCode}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{specialityController.destroyAndView}" value="#{bundle.ViewSpecialityDestroyLink}"/>
+                <br />
+                <br />
+                <h:commandLink action="Edit" value="#{bundle.ViewSpecialityEditLink}"/>
+                <br />
+                <h:commandLink action="#{specialityController.prepareCreate}" value="#{bundle.ViewSpecialityCreateLink}" />
+                <br />
+                <h:commandLink action="#{specialityController.prepareList}" value="#{bundle.ViewSpecialityShowAllLink}"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.ViewSpecialityIndexLink}" action="/index" immediate="true" />
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

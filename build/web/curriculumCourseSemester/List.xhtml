@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListCurriculumCourseSemesterTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+        <h:form styleClass="jsfcrud_list_form">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:outputText escape="false" value="#{bundle.ListCurriculumCourseSemesterEmpty}" rendered="#{curriculumCourseSemesterController.items.rowCount == 0}"/>
+            <h:panelGroup rendered="#{curriculumCourseSemesterController.items.rowCount > 0}">
+                <h:outputText value="#{curriculumCourseSemesterController.pagination.pageFirstItem + 1}..#{curriculumCourseSemesterController.pagination.pageLastItem + 1}/#{curriculumCourseSemesterController.pagination.itemsCount}"/>&nbsp;
+                <h:commandLink action="#{curriculumCourseSemesterController.previous}" value="#{bundle.Previous} #{curriculumCourseSemesterController.pagination.pageSize}" rendered="#{curriculumCourseSemesterController.pagination.hasPreviousPage}"/>&nbsp;
+                <h:commandLink action="#{curriculumCourseSemesterController.next}" value="#{bundle.Next} #{curriculumCourseSemesterController.pagination.pageSize}" rendered="#{curriculumCourseSemesterController.pagination.hasNextPage}"/>&nbsp;
+                <h:dataTable value="#{curriculumCourseSemesterController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListCurriculumCourseSemesterTitle_id}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.id}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListCurriculumCourseSemesterTitle_semester}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.semester}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListCurriculumCourseSemesterTitle_exam}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.exam}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListCurriculumCourseSemesterTitle_credit}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.credit}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListCurriculumCourseSemesterTitle_calculationGraphicalWork}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.calculationGraphicalWork}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListCurriculumCourseSemesterTitle_coursePaper}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.coursePaper}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListCurriculumCourseSemesterTitle_courseProject}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.courseProject}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListCurriculumCourseSemesterTitle_hoursPerWeek}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.hoursPerWeek}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListCurriculumCourseSemesterTitle_course}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.course}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="&nbsp;"/>
+                        </f:facet>
+                        <h:commandLink action="#{curriculumCourseSemesterController.prepareView}" value="#{bundle.ListCurriculumCourseSemesterViewLink}"/>
+                        <h:outputText value=" "/>
+                        <h:commandLink action="#{curriculumCourseSemesterController.prepareEdit}" value="#{bundle.ListCurriculumCourseSemesterEditLink}"/>
+                        <h:outputText value=" "/>
+                        <h:commandLink action="#{curriculumCourseSemesterController.destroy}" value="#{bundle.ListCurriculumCourseSemesterDestroyLink}"/>
+                    </h:column>
+                </h:dataTable>
+            </h:panelGroup>
+            <br />
+            <h:commandLink action="#{curriculumCourseSemesterController.prepareCreate}" value="#{bundle.ListCurriculumCourseSemesterCreateLink}"/>
+            <br />
+            <br />
+            <h:commandLink value="#{bundle.ListCurriculumCourseSemesterIndexLink}" action="/index" immediate="true" />
+        </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateSpecialityTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateSpecialityLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{specialityController.selected.id}" title="#{bundle.CreateSpecialityTitle_id}" required="true" requiredMessage="#{bundle.CreateSpecialityRequiredMessage_id}"/>
+                    <h:outputLabel value="#{bundle.CreateSpecialityLabel_refCode}" for="refCode" />
+                    <h:inputText id="refCode" value="#{specialityController.selected.refCode}" title="#{bundle.CreateSpecialityTitle_refCode}" required="true" requiredMessage="#{bundle.CreateSpecialityRequiredMessage_refCode}"/>
+                    <h:outputLabel value="#{bundle.CreateSpecialityLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{specialityController.selected.name}" title="#{bundle.CreateSpecialityTitle_name}" required="true" requiredMessage="#{bundle.CreateSpecialityRequiredMessage_name}"/>
+                    <h:outputLabel value="#{bundle.CreateSpecialityLabel_facultyId}" for="facultyId" />
+                    <h:inputText id="facultyId" value="#{specialityController.selected.facultyId}" title="#{bundle.CreateSpecialityTitle_facultyId}" required="true" requiredMessage="#{bundle.CreateSpecialityRequiredMessage_facultyId}"/>
+                    <h:outputLabel value="#{bundle.CreateSpecialityLabel_departmentId}" for="departmentId" />
+                    <h:inputText id="departmentId" value="#{specialityController.selected.departmentId}" title="#{bundle.CreateSpecialityTitle_departmentId}" required="true" requiredMessage="#{bundle.CreateSpecialityRequiredMessage_departmentId}"/>
+                    <h:outputLabel value="#{bundle.CreateSpecialityLabel_qualification}" for="qualification" />
+                    <h:inputText id="qualification" value="#{specialityController.selected.qualification}" title="#{bundle.CreateSpecialityTitle_qualification}" required="true" requiredMessage="#{bundle.CreateSpecialityRequiredMessage_qualification}"/>
+                    <h:outputLabel value="#{bundle.CreateSpecialityLabel_active1}" for="active1" />
+                    <h:inputText id="active1" value="#{specialityController.selected.active1}" title="#{bundle.CreateSpecialityTitle_active1}" required="true" requiredMessage="#{bundle.CreateSpecialityRequiredMessage_active1}"/>
+                    <h:outputLabel value="#{bundle.CreateSpecialityLabel_qualificationLevelId}" for="qualificationLevelId" />
+                    <h:inputText id="qualificationLevelId" value="#{specialityController.selected.qualificationLevelId}" title="#{bundle.CreateSpecialityTitle_qualificationLevelId}" required="true" requiredMessage="#{bundle.CreateSpecialityRequiredMessage_qualificationLevelId}"/>
+                    <h:outputLabel value="#{bundle.CreateSpecialityLabel_qualificationCode}" for="qualificationCode" />
+                    <h:inputText id="qualificationCode" value="#{specialityController.selected.qualificationCode}" title="#{bundle.CreateSpecialityTitle_qualificationCode}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{specialityController.create}" value="#{bundle.CreateSpecialitySaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{specialityController.prepareList}" value="#{bundle.CreateSpecialityShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:commandLink value="#{bundle.CreateSpecialityIndexLink}" action="/index" immediate="true" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
